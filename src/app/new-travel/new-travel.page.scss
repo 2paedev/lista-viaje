@@ -1,0 +1,39 @@
+:host {
+  .travel {
+  }
+
+  .title-block {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      --color: lime;
+    }
+  }
+
+  .items-block {
+    margin-top: 35px;
+    .button-wrapper {
+      text-align: center;
+
+      &.save {
+        margin-top: 30px;
+      }
+    }
+
+    .item {
+      margin-top: 19px;
+    }
+
+    .remove-option {
+      --background: lime;
+      --color: #000000;
+      margin-top: 20px;
+      border: 1px solid #000000;
+    }
+
+    .list-items {
+      margin-top: 20px;
+    }
+  }
+}

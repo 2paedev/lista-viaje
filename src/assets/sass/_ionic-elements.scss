@@ -1,0 +1,39 @@
+ion-input {
+  letter-spacing: 2px;
+  text-transform: capitalize;
+
+  &.title {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}
+
+ion-item,
+ion-label,
+ion-reorder-group,
+ion-list {
+  --ion-background-color:: #000000;
+  --color: lime;
+  --border-color: none;
+  letter-spacing: 2px;
+  --padding-start: 0;
+  text-transform: capitalize;
+}
+
+ion-button {
+  --background: #000000;
+  --background-activated: lime;
+  --border-radius: 1px;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: lime;
+  --color: lime;
+  --color-activated: #000000;
+
+  &.inverted {
+    --background: lime;
+    --background-activated: #000000;
+    --color: #000000;
+    --color-activated: lime;
+  }
+}

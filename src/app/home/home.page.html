@@ -1,0 +1,28 @@
+<ion-content class="container home">
+  <div class="info-message">
+    <p class="typewriter-anim" *ngIf="showFirstParagraph">
+      Hola...¿Te vas de viaje? Bien!!
+    </p>
+    <p class="typewriter-anim" *ngIf="showSecondParagraph">
+      Añade una nueva lista si quieres.
+    </p>
+    <p class="typewriter-anim" *ngIf="showThirdParagraph">
+      También puedes elegir una anterior.
+    </p>
+  </div>
+  <div *ngIf="typewriterAnimIsFinished" class="card-wrapper intermitente-anim">
+    <app-card
+      title="Nueva lista"
+      (click)="goToNewTravel()"
+      newList="true"
+    ></app-card>
+  </div>
+  <div *ngIf="intermitenteAnimIsFinished" class="card-wrapper show-anim">
+    <app-card
+      class="card"
+      *ngFor="let travel of travels"
+      [title]="travel.title"
+      (click)="goToDetail(travel.id)"
+    ></app-card>
+  </div>
+</ion-content>

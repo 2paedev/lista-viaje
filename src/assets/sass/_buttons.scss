@@ -1,0 +1,17 @@
+.custom-button {
+  font-size: 14px;
+  font-weight: 800;
+  --height: 35px;
+  --color: #ffffff;
+  --border-radius: 8px;
+  --background: #c31720;
+  --background-activated: #c31720;
+  --background-focused: #c31720;
+  -webkit-appearance: none;
+  text-transform: capitalize;
+
+  &.outline {
+    --background: transparent;
+    --color: #c31720;
+  }
+}

@@ -1,0 +1,60 @@
+<ion-content class="container travel">
+  <div class="title-block">
+    <ion-label class="typewriter-anim">Pon un título a tu viaje:</ion-label>
+    <ion-item>
+      <ion-label class="intermitente-anim">$></ion-label>
+      <ion-input
+        #titleInput
+        class="title"
+        name="title"
+        required="true"
+        maxlength="25"
+        [value]="title"
+        (ionBlur)="exitTitleInput()"
+      ></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="items-block" *ngIf="endAnimationTitle">
+    <p class="info-text typewriter-anim">¡Que no se te olvide nada!</p>
+
+    <div class="button-wrapper" *ngIf="!showInputElement">
+      <ion-button class="intermitente-anim" (click)="addElement()"
+        >Añadir</ion-button
+      >
+    </div>
+    <ion-item *ngIf="showInputElement">
+      <ion-label class="intermitente-anim">$></ion-label>
+      <ion-input
+        #elementInput
+        class="element"
+        name="element"
+        maxlength="25"
+        [value]="title"
+        (ionBlur)="exitElementInput()"
+      ></ion-input>
+    </ion-item>
+    <ion-list #dynamicList lines="full" class="list-items">
+      <ion-reorder-group
+        disabled="false"
+        (ionItemReorder)="reorderItems($event)"
+      >
+        <ion-item-sliding *ngFor="let item of items; let i = index">
+          <ion-item class="item" lines="none">
+            <ion-label>{{ i + 1 }}. {{ item }}</ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option class="remove-option" (click)="removeItem(i)"
+              >Remove</ion-item-option
+            >
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-reorder-group>
+      <div class="button-wrapper save" *ngIf="this.items.length">
+        <ion-button class="inverted" (click)="saveList()">Guardar</ion-button>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

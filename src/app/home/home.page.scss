@@ -1,0 +1,19 @@
+@import '../../assets/sass/main';
+
+:host {
+  .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .info-message {
+      margin-bottom: 50px;
+    }
+
+    .card-wrapper,
+    .card {
+      margin: 30px;
+    }
+  }
+}
