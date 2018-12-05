@@ -1,1 +1,50 @@
-<ion-content class="container detail"></ion-content>
+<ion-content class="container detail">
+  <div class="items-block" *ngIf="travel">
+    <p class="info-text typewriter-anim">¡Que no se te olvide nada!</p>
+
+    <ion-list #dynamicList lines="full" class="list-items">
+      <ion-list-header>{{ travel.title }}</ion-list-header>
+      <ion-reorder-group
+        disabled="false"
+        (ionItemReorder)="reorderItems($event)"
+      >
+        <ion-item-sliding *ngFor="let item of travel.items; let i = index">
+          <ion-item class="item" lines="none">
+            <ion-label>{{ i + 1 }}. {{ item }}</ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option class="remove-option" (click)="removeItem(i)"
+              >Remove</ion-item-option
+            >
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-reorder-group>
+
+      <div class="button-wrapper save" *ngIf="showSaveButton()">
+        <ion-button class="inverted" (click)="saveList()">Guardar</ion-button>
+      </div>
+    </ion-list>
+
+    <p class="info-text typewriter-anim">Añade nuevos elementos:</p>
+
+    <div class="button-wrapper" *ngIf="!showInputElement">
+      <ion-button class="intermitente-anim" (click)="addElement()"
+        >Añadir</ion-button
+      >
+    </div>
+
+    <ion-item *ngIf="showInputElement">
+      <ion-label class="intermitente-anim">$></ion-label>
+      <ion-input
+        #elementInput
+        class="element"
+        name="element"
+        maxlength="25"
+        [value]="title"
+        (ionBlur)="exitElementInput()"
+      ></ion-input>
+    </ion-item>
+  </div>
+</ion-content>
