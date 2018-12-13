@@ -4,6 +4,7 @@ import { StorageService } from '../services/storage.service';
 import { SpinnerService } from '../services/spinner.service';
 import { Travel } from '../models/travel';
 import { APP_ROUTES } from '../utils/app-routes';
+import { isUndefinedOrNullOrEmpty } from '../utils/helpers';
 
 @Component({
   selector: 'app-detail',
@@ -11,10 +12,12 @@ import { APP_ROUTES } from '../utils/app-routes';
   styleUrls: ['./detail.page.scss']
 })
 export class DetailPage {
+  @ViewChild('titleInput') titleInput;
   @ViewChild('elementInput') elementInput;
   @ViewChild('dynamicList') dynamicList;
 
   endAnimationTitle: boolean;
+  showInputTitle: boolean;
   showInputElement: boolean;
   title: string;
   element: string;
@@ -30,12 +33,13 @@ export class DetailPage {
     private activeRoute: ActivatedRoute,
     private storage: StorageService,
     private spinner: SpinnerService
-  ) {}
+  ) { }
 
   public ionViewDidEnter(): void {
     this.idTravel = parseInt(this.activeRoute.snapshot.params.id, 10);
     this.getTravelData(this.idTravel);
     this.endAnimationTitle = false;
+    this.showInputTitle = false;
     this.showInputElement = false;
   }
 
@@ -50,9 +54,24 @@ export class DetailPage {
     });
   }
 
+  public editTitle() {
+    this.showInputTitle = true;
+  }
+
+  public exitTitleInput() {
+    const newTitle = this.titleInput.value;
+    this.showInputTitle = false;
+    if (!isUndefinedOrNullOrEmpty(newTitle)) {
+      this.travel.title = newTitle;
+    }
+  }
+
   public exitElementInput() {
-    this.travel.items.push(this.elementInput.value);
+    const elementValue = this.elementInput.value;
     this.showInputElement = false;
+    if (!isUndefinedOrNullOrEmpty(elementValue)) {
+      this.travel.items.push(elementValue);
+    }
   }
 
   public addElement() {

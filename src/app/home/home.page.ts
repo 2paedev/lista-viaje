@@ -18,11 +18,7 @@ export class HomePage {
   showSecondParagraph: boolean;
   showThirdParagraph: boolean;
 
-  constructor(
-    private router: Router,
-    private storage: StorageService,
-    private spinner: SpinnerService
-  ) {}
+  constructor(private router: Router, private storage: StorageService, private spinner: SpinnerService) {}
 
   public ionViewWillDid(): void {
     this.typewriterAnimIsFinished = false;

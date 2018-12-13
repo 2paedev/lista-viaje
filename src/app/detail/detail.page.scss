@@ -1,12 +1,17 @@
 :host {
   .items-block {
     margin-top: 35px;
+
     .button-wrapper {
       text-align: center;
 
       &.save {
         margin-top: 30px;
       }
+    }
+
+    .edit-title-input {
+      margin-bottom: 30px;
     }
 
     .item {
@@ -22,6 +27,7 @@
 
     .list-items {
       margin-top: 20px;
+      height: 100%;
     }
   }
 }

@@ -1,12 +1,14 @@
 :host {
   .card-container {
     width: 100%;
-    height: 120px;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     background: transparent;
     border: 3px solid;
+    padding: 15px;
+    font-size: 18px;
 
     &.new-list {
       border: 3px dotted;

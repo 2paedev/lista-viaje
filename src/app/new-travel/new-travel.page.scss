@@ -10,13 +10,7 @@
 
   .items-block {
     margin-top: 35px;
-    .button-wrapper {
-      text-align: center;
-
-      &.save {
-        margin-top: 30px;
-      }
-    }
+    height: 100%;
 
     .item {
       margin-top: 19px;
@@ -31,6 +25,19 @@
 
     .list-items {
       margin-top: 20px;
+    }
+  }
+  .add-button-wrapper,
+  .save-button-wrapper {
+    text-align: center;
+  }
+
+  .save-button-wrapper {
+    //position: sticky;
+    //bottom: 0;
+
+    &.save {
+      margin-top: 30px;
     }
   }
 }

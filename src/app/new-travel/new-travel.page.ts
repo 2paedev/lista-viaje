@@ -4,6 +4,7 @@ import { StorageService } from '../services/storage.service';
 import { SpinnerService } from '../services/spinner.service';
 import { Travel } from '../models/travel';
 import { APP_ROUTES } from '../utils/app-routes';
+import { isUndefinedOrNullOrEmpty } from '../utils/helpers';
 
 @Component({
   selector: 'app-new-travel',
@@ -21,11 +22,7 @@ export class NewTravelPage {
   element: string;
   items: string[];
 
-  constructor(
-    private router: Router,
-    private storage: StorageService,
-    private spinner: SpinnerService
-  ) {}
+  constructor(private router: Router, private storage: StorageService, private spinner: SpinnerService) { }
 
   public ionViewDidEnter(): void {
     this.items = [];
@@ -38,8 +35,11 @@ export class NewTravelPage {
   }
 
   public exitElementInput() {
-    this.items.push(this.elementInput.value);
+    const itemValue = this.elementInput.value;
     this.showInputElement = false;
+    if (!isUndefinedOrNullOrEmpty(itemValue)) {
+      this.items.push(itemValue);
+    }
   }
 
   public addElement() {
@@ -80,5 +80,9 @@ export class NewTravelPage {
   public removeItem(key: number) {
     this.dynamicList.closeSlidingItems();
     this.items.splice(key, 1);
+  }
+
+  public showSaveButton() {
+    return this.items.length && this.titleInput.value;
   }
 }
