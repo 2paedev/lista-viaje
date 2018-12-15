@@ -42,21 +42,22 @@
     <ion-list #dynamicList
       lines="full"
       class="list-items">
+      <!-- REORDER NOT WORK IONIC 4
       <ion-reorder-group disabled="false"
-        (ionItemReorder)="reorderItems($event)">
-        <ion-item-sliding *ngFor="let item of items; let i = index">
-          <ion-item class="item"
-            lines="none">
-            <ion-label>{{ i + 1 }}. {{ item }}</ion-label>
-            <ion-reorder slot="end"></ion-reorder>
-          </ion-item>
+        (ionItemReorder)="reorderItems($event)"> -->
+      <ion-item-sliding *ngFor="let item of items; let i = index">
+        <ion-item class="item"
+          lines="none">
+          <ion-label>{{ i + 1 }}. {{ item }}</ion-label>
+          <!-- <ion-reorder slot="end"></ion-reorder> -->
+        </ion-item>
 
-          <ion-item-options side="end">
-            <ion-item-option class="remove-option"
-              (click)="removeItem(i)">Remove</ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-reorder-group>
+        <ion-item-options side="end">
+          <ion-item-option class="remove-option"
+            (click)="removeItem(i)">Remove</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+      <!-- </ion-reorder-group> -->
     </ion-list>
   </div>
 </ion-content>

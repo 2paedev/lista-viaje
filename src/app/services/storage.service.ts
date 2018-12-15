@@ -8,7 +8,7 @@ const STORAGE_TRAVELS_ID = 'travels';
   providedIn: 'root'
 })
 export class StorageService {
-  constructor(private storage: Storage) {}
+  constructor(private storage: Storage) { }
 
   public initTravels() {
     this.storage.set(STORAGE_TRAVELS_ID, []);
@@ -18,7 +18,7 @@ export class StorageService {
     return this.storage.get(STORAGE_TRAVELS_ID);
   }
 
-  saveTravelInfo(travels: Travel[]) {
+  public saveTravelInfo(travels: Travel[]) {
     return this.storage.set(STORAGE_TRAVELS_ID, travels);
   }
 
@@ -26,11 +26,7 @@ export class StorageService {
 
   // }
 
-  // removeTravel(id: number) {
-
-  // }
-
   public removeAllTravels() {
-    this.storage.remove(STORAGE_TRAVELS_ID).then(() => {});
+    this.storage.remove(STORAGE_TRAVELS_ID).then(() => { });
   }
 }

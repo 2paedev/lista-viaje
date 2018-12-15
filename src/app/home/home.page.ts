@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Travel } from '../models/travel';
 import { SpinnerService } from '../services/spinner.service';
@@ -10,7 +10,7 @@ import { APP_ROUTES } from '../utils/app-routes';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
   travels: Travel[];
   typewriterAnimIsFinished: boolean;
   intermitenteAnimIsFinished: boolean;
@@ -18,20 +18,21 @@ export class HomePage {
   showSecondParagraph: boolean;
   showThirdParagraph: boolean;
 
-  constructor(private router: Router, private storage: StorageService, private spinner: SpinnerService) {}
+  constructor(private router: Router, private storage: StorageService, private spinner: SpinnerService) { }
 
-  public ionViewWillDid(): void {
+  public ngOnInit(): void {
+    this.initVariables();
+    this.initAnimation();
+    this.initTravels();
+    // this.storage.removeAllTravels();
+  }
+
+  private initVariables() {
     this.typewriterAnimIsFinished = false;
     this.intermitenteAnimIsFinished = false;
     this.showFirstParagraph = false;
     this.showSecondParagraph = false;
     this.showThirdParagraph = false;
-  }
-
-  public ionViewWillEnter(): void {
-    this.initAnimation();
-    this.initTravels();
-    // this.storage.removeAllTravels();
   }
 
   private initAnimation() {
@@ -50,6 +51,7 @@ export class HomePage {
 
   private initTravels() {
     this.storage.getAllTravels().then(data => {
+      debugger;
       if (data === null) {
         this.storage.initTravels();
         this.travels = [];

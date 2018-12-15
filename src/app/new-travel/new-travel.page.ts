@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { SpinnerService } from '../services/spinner.service';
@@ -11,7 +11,7 @@ import { isUndefinedOrNullOrEmpty } from '../utils/helpers';
   templateUrl: './new-travel.page.html',
   styleUrls: ['./new-travel.page.scss']
 })
-export class NewTravelPage {
+export class NewTravelPage implements OnInit {
   @ViewChild('titleInput') titleInput;
   @ViewChild('elementInput') elementInput;
   @ViewChild('dynamicList') dynamicList;
@@ -24,7 +24,7 @@ export class NewTravelPage {
 
   constructor(private router: Router, private storage: StorageService, private spinner: SpinnerService) { }
 
-  public ionViewDidEnter(): void {
+  public ngOnInit(): void {
     this.items = [];
     this.endAnimationTitle = false;
     this.showInputElement = false;

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { SpinnerService } from '../services/spinner.service';
@@ -11,7 +11,7 @@ import { isUndefinedOrNullOrEmpty } from '../utils/helpers';
   templateUrl: './detail.page.html',
   styleUrls: ['./detail.page.scss']
 })
-export class DetailPage {
+export class DetailPage implements OnInit {
   @ViewChild('titleInput') titleInput;
   @ViewChild('elementInput') elementInput;
   @ViewChild('dynamicList') dynamicList;
@@ -23,6 +23,7 @@ export class DetailPage {
   element: string;
   items: string[];
   initialItemsTravelLength: number;
+  initialTravelTitle: string;
   idTravel: number;
 
   travel: Travel;
@@ -35,7 +36,7 @@ export class DetailPage {
     private spinner: SpinnerService
   ) { }
 
-  public ionViewDidEnter(): void {
+  public ngOnInit(): void {
     this.idTravel = parseInt(this.activeRoute.snapshot.params.id, 10);
     this.getTravelData(this.idTravel);
     this.endAnimationTitle = false;
@@ -50,8 +51,17 @@ export class DetailPage {
         return travel.id === id;
       });
       this.initialItemsTravelLength = this.travel.items.length;
-      console.log(this.initialItemsTravelLength);
+      this.initialTravelTitle = this.travel.title;
     });
+  }
+
+  public removeTravel() {
+    this.spinner.activate();
+    const index = this.travels.findIndex(travel => {
+      return travel.id === this.idTravel;
+    });
+    this.travels.splice(index, 1);
+    this.saveTravelsInStorage();
   }
 
   public editTitle() {
@@ -80,7 +90,10 @@ export class DetailPage {
 
   public showSaveButton() {
     const currentLength = this.travel.items.length;
-    return currentLength !== this.initialItemsTravelLength;
+    const itemsLengthChanged = currentLength !== this.initialItemsTravelLength;
+    const currentTitle = this.travel.title;
+    const titleChanged = currentTitle !== this.initialTravelTitle;
+    return itemsLengthChanged || titleChanged;
   }
 
   public saveList() {
@@ -89,6 +102,10 @@ export class DetailPage {
       return travel.id === this.idTravel;
     });
     this.travels[index].items = this.travel.items;
+    this.saveTravelsInStorage();
+  }
+
+  saveTravelsInStorage() {
     this.storage.saveTravelInfo(this.travels).then(
       () => {
         this.router.navigate([APP_ROUTES.HOME]);
