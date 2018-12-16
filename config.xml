@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="viaje.lista.paedev" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ListaViaje</name>
     <description>Realiza lista de tus viajes, guardalas y que no se te olvide nada a partir de ahora.</description>
     <author email="2paedev@gmail.com" href="https://github.com/2paedev">2PaeDev</author>
