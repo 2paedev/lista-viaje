@@ -28,16 +28,10 @@
       <ion-input #elementInput
         class="element"
         name="element"
-        maxlength="25"
+        maxlength="23"
         [value]="title"
         (ionBlur)="exitElementInput()"></ion-input>
     </ion-item>
-
-    <div class="save-button-wrapper save"
-      *ngIf="showSaveButton()">
-      <ion-button class="inverted"
-        (click)="saveList()">Guardar</ion-button>
-    </div>
 
     <ion-list #dynamicList
       lines="full"
@@ -54,10 +48,16 @@
 
         <ion-item-options side="end">
           <ion-item-option class="remove-option"
-            (click)="removeItem(i)">Remove</ion-item-option>
+            (click)="removeItem(i)">Borrar</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
       <!-- </ion-reorder-group> -->
     </ion-list>
+
+    <div class="save-button-wrapper save"
+      *ngIf="showSaveButton()">
+      <ion-button class="inverted"
+        (click)="saveList()">Guardar lista</ion-button>
+    </div>
   </div>
 </ion-content>

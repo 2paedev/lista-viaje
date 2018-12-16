@@ -51,7 +51,6 @@ export class HomePage implements OnInit {
 
   private initTravels() {
     this.storage.getAllTravels().then(data => {
-      debugger;
       if (data === null) {
         this.storage.initTravels();
         this.travels = [];

@@ -31,7 +31,10 @@ export class NewTravelPage implements OnInit {
   }
 
   public exitTitleInput() {
-    this.endAnimationTitle = true;
+    const newTitle = this.titleInput.value;
+    if (!isUndefinedOrNullOrEmpty(newTitle)) {
+      this.endAnimationTitle = true;
+    }
   }
 
   public exitElementInput() {
